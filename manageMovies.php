@@ -22,7 +22,7 @@
         </div>
 
         <div class="col-sm-4">
-        <form method="POST" action="#">
+        <form method="POST" action="#">Hey
             <legend>Ajouter un film</legend> 
             
             <div class="form-group">
