@@ -38,7 +38,7 @@ require_once("config/connect_db.php");
 
         <div class="tab-content">
             <div class="tab-pane active" id="addMovie" role="tabpanel" aria-labelledby="addMovie-tab">
-                <form method="POST" action="process/crudmovie.php?action=addMovie">
+                <form  enctype="multipart/form-data" method="POST" action="process/crudmovie.php?action=addMovie">
                     <legend>Ajouter un film</legend>
 
                     <div class="form-group">
@@ -50,16 +50,31 @@ require_once("config/connect_db.php");
                     </div>
 
                     <div class="form-group">
+                        <input type="time" name="duree" class="form-control" placeholder="Durée">
+                    </div>
+
+                    <div class="form-group">
                         <input type="date" class="form-control-date" name="date_Sortie" placeholder="Date de sortie">
                     </div>
 
                     <div class="form-group">
                         <label for="jacket_Film">Jacket</label>
-                        <input input="jacket_Film" type="file" class="form-control-file" aria-describedby="fileHelp">
+                        <input name="jacket_Film" type="file" class="form-control-file" aria-describedby="fileHelp">
                     </div>
 
                     <div class="form-group">
-                        <input type="text" class="form-control" name="genres" placeholder="Genre(s)">
+                        <label for="genres">Liste des genres</label>
+                        <select name="genres" class="form-control" id="genres">
+                            <?php
+                            $stmt = $dbh->query("SELECT * FROM genres");
+                            while ($row = $stmt->fetch()) {
+
+                                ?>
+                                <option value="<?php echo $row['id'] ?>"><?php echo $row['genre']; ?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
                     </div>
 
                     <div class="form-group">
@@ -92,6 +107,9 @@ require_once("config/connect_db.php");
                         </select>
                     </div>
 
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="lien_bande_annonce" placeholder="Lien bande-annonce (Youtube)">
+                    </div>
 
                     <div class="form-group">
                         <input type="submit" value="Ajouter le film">
