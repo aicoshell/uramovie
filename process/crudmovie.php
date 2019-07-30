@@ -1,5 +1,5 @@
 <?php
-//require_once('./../config/connect_db.php');
+require_once('./../config/connect_db.php');
 
 //Verifie si la variable action existe 
     if(!isset($_GET['action']) OR empty($_GET['action'])){
@@ -12,25 +12,33 @@
         $action = $_GET['action'];
 
         switch($action){
-            case "addMovie":
-                echo "addMovie";
-                
+            case 'addMovie':
+                echo 'addMovie';
+                    echo $_POST["titre"];
                 break;
 
-            case "deleteMovie":
-                echo "deleteMovie";
+            case 'deleteMovie':
+                echo 'deleteMovie';
                 break;
             
-            case "updateMovie":
+            case 'updateMovie':
                 echo "updateMovie";
                 break;
 
-            case "searchMovie":
+            case 'searchMovie':
                 echo "searchMovie";
+                break;
+
+            case 'addActeur':
+                echo "addActeur";
+                break;
+
+            case 'addRealisateur':
+                echo "addRealisateur";
                 break;
             
             default:
-                echo "action pas valide";
+                echo "Action non-reconnue <=== retour au formulaire";
 
         }
     }
