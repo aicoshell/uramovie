@@ -22,14 +22,15 @@
 
   </div>
 <div class="row">
-<div class="col-lg-">
+<div class="col-lg- d-flex align-content-start">
   
     <?php
     $stmt = $dbh->query("SELECT * FROM films");
     while ($row = $stmt->fetch()) {
 
       ?>
-      <div class="card d-inline-block mt-4 ml-4" style="width: 18rem;">
+     
+      <div class="card d-inline-block   mt-4 ml-4" style="width: 18rem;">
         <img width="285" height="410" src="process/<?php echo $row['url_Jacket']; ?>" class="card-img-top" alt="<?php echo $row['titre']; ?>">
         <div class="card-img-overlay text-white">
           <h3 class="card-title"><?php echo $row['titre']; ?></h3>
@@ -50,6 +51,7 @@
           <a href="#" class="card-link">Allocine</a>
         </div>
       </div>
+      
     <?php
     }
     ?>
