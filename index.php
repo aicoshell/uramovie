@@ -13,12 +13,14 @@
 
 <body>
   <div id="header">
-
-    <form id="searchForm float-right" method="GET" action="#">
+  <div class="container">
+    <h1 class="logo-css">Wild'Cin&eacute;</h1>
+  
+    <form class="text-right" id="searchForm float-right" method="GET" action="#">
       <input class="search" name="keyword" type="text" placeholder="Search a movie !">
       <input class="search_button" type="submit" value="Search">
     </form>
-
+    </div>
 
   </div>
 <div class="row">
@@ -34,17 +36,18 @@
         <img width="285" height="410" src="process/<?php echo $row['url_Jacket']; ?>" class="card-img-top" alt="<?php echo $row['titre']; ?>">
         <div class="card-img-overlay text-white">
           <h3 class="card-title"><?php echo $row['titre']; ?></h3>
+          <p style="display:none;" class="card-text synopsis"><?php echo $row['synopsis']; ?></p>
           
         </div>
         <div class="card-body">
-        <p class="card-text"><?php echo $row['synopsis']; ?></p>
+        
         </div>
         <ul class="list-group list-group-flush">
           
         <li class="list-group-item">Durée : <?php echo $row['duree']; ?></li>
-          <li class="list-group-item">Genre(s) : </li>
-          <li class="list-group-item">Acteur(s) : </li>
-          <li class="list-group-item">R&eacute;alisateur(s) :</li>
+          <li class="list-group-item">Genre(s) :<?php echo $row['genre_s']; ?> </li>
+          <li class="list-group-item">Acteur(s) : <?php echo $row['acteur_s']; ?></li>
+          <li class="list-group-item">R&eacute;alisateur(s) :<?php echo $row['realisateur_s']; ?></li>
         </ul>
         <div class="card-body">
           <a href="#" class="card-link">Bande-Annonce</a>

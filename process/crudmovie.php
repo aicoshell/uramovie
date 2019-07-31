@@ -20,8 +20,8 @@ require_once('./../config/connect_db.php');
                     }
                     else{
                         //Si les champs ne sont pas vide alors on declare les variables
-                            $titre = $_POST['titre'];
-                            $synopsis = $_POST['synopsis'];
+                            $titre = htmlentities($_POST['titre']);
+                            $synopsis = htmlentities($_POST['synopsis']);
                             $duree = $_POST['duree'];
                             $url_Bande_Annonce = $_POST['lien_bande_annonce'];
                             
@@ -45,7 +45,14 @@ require_once('./../config/connect_db.php');
                                             $new_nom_fichier = uniqid('', true).".".$ext_fichier_now; //On creer un nom unique en fonction de la date actuelle TRUE pour more_entropy donc encore plus precis pour une valeure unique
                                             $destination_fichier = 'jackets/'.$new_nom_fichier; // Variable contenant le repertoire de destination + nom du fichier
 
-                                            move_uploaded_file($nom_tmp_fichier, $new_nom_fichier);
+                                            $upload_fichier = move_uploaded_file($nom_tmp_fichier, $new_nom_fichier);
+
+                                            if($upload_fichier){
+                                                echo "Le fichier a bien etait uploader !";
+                                            }
+                                            else {
+                                                echo "Erreur upload";
+                                            }
 
                                         }
                                         else {
@@ -65,13 +72,17 @@ require_once('./../config/connect_db.php');
                             }
                             $date_Sortie = $_POST['date_Sortie'];
 
-                            $id_Genres = $_POST['genres'];
-                                // On verifie si le champ comporte plusieurs ID separer par un ; on formate en json
-                            $id_Acteurs = $_POST['acteurs'];
-                            $id_Realisateurs = $_POST['realisateurs'];
+                            $genre_s = htmlentities($_POST['genres']);
+                            $acteur_s = htmlentities($_POST['acteurs']);
+                            $realisateur_s = htmlentities($_POST['realisateurs']);
 
-                        $sql = "INSERT INTO films (titre, synopsis, url_Jacket, duree, url_bande_annonce,id_Acteur,id_Realisateur,id_Genre,date_Sortie) VALUES (?,?,?,?,?,?,?,?,?)";
-                        $dbh->prepare($sql)->execute([$titre, $synopsis, $new_nom_fichier, $duree, $url_Bande_Annonce, $id_Acteurs, $id_Realisateurs, $id_Genres, $date_Sortie]);
+                $sql = "INSERT INTO films (titre, synopsis, url_Jacket, duree, url_bande_annonce, acteur_s, realisateur_s, genre_s, date_Sortie) VALUES (?,?,?,?,?,?,?,?,?)";
+                $exe = $dbh->prepare($sql);
+                $exe->execute([$titre, $synopsis, $new_nom_fichier, $duree, $url_Bande_Annonce, $acteur_s, $realisateur_s, $genre_s, $date_Sortie]);
+                          
+                        echo "\nPDOStatement::errorCode(): ";
+                        print $exe->errorCode();
+                        
                     }
                 break;
 

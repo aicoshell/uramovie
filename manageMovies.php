@@ -63,8 +63,8 @@ require_once("config/connect_db.php");
                     <input type="date" class="form-control-date" name="date_Sortie" placeholder="Date de sortie">
                 </div>
 
-                <div class="form-group">
-                    <label for="jacket_Film">Jacket</label>
+                <div class="form-group bg-dark text-white p-4">
+                    <label for="jacket_Film">Image de couverture</label>
                     <input name="jacket_Film" type="file" class="form-control-file">
                 </div>
 
@@ -75,32 +75,13 @@ require_once("config/connect_db.php");
 
                 <div class="form-group">
                     <label for="realisateurs">Réalisateurs</label>
-                    <select name="realisateurs" class="form-control" id="realisateurs">
-                        <?php
-                        $stmt = $dbh->query("SELECT * FROM realisateurs");
-                        while ($row = $stmt->fetch()) {
-
-                            ?>
-                            <option value="<?php echo $row['id'] ?>"><?php echo $row['nom'] ?></option>
-                        <?php
-                        }
-                        ?>
-                    </select>
+                    <input name="realisateurs" type="text" class="form-control" id="realisateurs">
+                        
                 </div>
 
                 <div class="form-group">
-                    <label for="acteurs">Liste des acteurs</label>
-                    <select name="acteurs" class="form-control" id="acteurs">
-                        <?php
-                        $stmt = $dbh->query("SELECT * FROM acteurs");
-                        while ($row = $stmt->fetch()) {
-
-                            ?>
-                            <option value="<?php echo $row['id'] ?>"><?php echo $row['nom']; ?></option>
-                        <?php
-                        }
-                        ?>
-                    </select>
+                    <label for="acteurs">Acteurs</label>
+                    <input name="acteurs" type="text" class="form-control" id="acteurs">
                 </div>
 
                 <div class="form-group">
@@ -128,68 +109,55 @@ require_once("config/connect_db.php");
     <script>
         $(document).ready(function() {
             var availableTags = [
-      "ActionScript",
-      "AppleScript",
-      "Asp",
-      "BASIC",
-      "C",
-      "C++",
-      "Clojure",
-      "COBOL",
-      "ColdFusion",
-      "Erlang",
-      "Fortran",
-      "Groovy",
-      "Haskell",
-      "Java",
-      "JavaScript",
-      "Lisp",
-      "Perl",
-      "PHP",
-      "Python",
-      "Ruby",
-      "Scala",
-      "Scheme"
-    ];
-    function split( val ) {
-      return val.split( /,\s*/ );
-    }
-    function extractLast( term ) {
-      return split( term ).pop();
-    }
- 
-    $( "#tags" )
-      // don't navigate away from the field on tab when selecting an item
-      .on( "keydown", function( event ) {
-        if ( event.keyCode === $.ui.keyCode.TAB &&
-            $( this ).autocomplete( "instance" ).menu.active ) {
-          event.preventDefault();
-        }
-      })
-      .autocomplete({
-        minLength: 0,
-        source: function( request, response ) {
-          // delegate back to autocomplete, but extract the last term
-          response( $.ui.autocomplete.filter(
-            availableTags, extractLast( request.term ) ) );
-        },
-        focus: function() {
-          // prevent value inserted on focus
-          return false;
-        },
-        select: function( event, ui ) {
-          var terms = split( this.value );
-          // remove the current input
-          terms.pop();
-          // add the selected item
-          terms.push( ui.item.value );
-          // add placeholder to get the comma-and-space at the end
-          terms.push( "" );
-          this.value = terms.join( ", " );
-          return false;
-        }
-      });
-  } );
+                <?php
+                $stmt = $dbh->query("SELECT * FROM genres");
+                while ($row = $stmt->fetch()) {
+
+                    echo "\"".$row['genre']."\",";  
+                 
+                }
+                ?>
+            ];
+
+            function split(val) {
+                return val.split(/,\s*/);
+            }
+
+            function extractLast(term) {
+                return split(term).pop();
+            }
+
+            $("#genres")
+                // don't navigate away from the field on tab when selecting an item
+                .on("keydown", function(event) {
+                    if (event.keyCode === $.ui.keyCode.TAB &&
+                        $(this).autocomplete("instance").menu.active) {
+                        event.preventDefault();
+                    }
+                })
+                .autocomplete({
+                    minLength: 0,
+                    source: function(request, response) {
+                        // delegate back to autocomplete, but extract the last term
+                        response($.ui.autocomplete.filter(
+                            availableTags, extractLast(request.term)));
+                    },
+                    focus: function() {
+                        // prevent value inserted on focus
+                        return false;
+                    },
+                    select: function(event, ui) {
+                        var terms = split(this.value);
+                        // remove the current input
+                        terms.pop();
+                        // add the selected item
+                        terms.push(ui.item.value);
+                        // add placeholder to get the comma-and-space at the end
+                        terms.push("");
+                        this.value = terms.join(", ");
+                        return false;
+                    }
+                });
         });
     </script>
 

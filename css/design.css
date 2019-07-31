@@ -18,3 +18,12 @@ body{
 }
 
 
+.synopsis{
+    
+}
+.synopsis:hover{
+    display: block;
+    transition :1s;
+}
+
+
