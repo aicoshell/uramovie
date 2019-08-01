@@ -7,8 +7,12 @@
 
 <head>
   <title>CRUDMovie</title>
+  <!-- Bootrsrap v4 -->
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <!-- Theme Wild'Ciné -->
   <link rel="stylesheet" type="text/css" href="css/design.css">
+  <!-- Icons FontAwesome -->
+  <script src="https://kit.fontawesome.com/5738d8e7a0.js"></script>
 </head>
 
 <body>
@@ -46,7 +50,7 @@
   </div>
   <div class="container">
 
-    <div class="col-lg- d-flex align-content-start">
+    <div class="col-lg- ">
 
       <?php
       $stmt = $dbh->query("SELECT * FROM films");
