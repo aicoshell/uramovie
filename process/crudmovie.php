@@ -37,7 +37,7 @@ require_once('./../config/connect_db.php');
                                 $ext_fichier = explode('.', $nom_fichier); // Retourne un tableau avec les elements separer par le delimiteur " . " dans notre cas
                                 $ext_fichier_now = strtolower(end($ext_fichier)); //On recupere l'extension du fichier apres le dernier point => end pour le dernier element
                         
-                                $ext_allowed = array('jpg', 'jpeg', 'png', 'PNG', 'JPG', 'JPEG'); // On creer un tableau pour les extensions autorises
+                                $ext_allowed = array('jfif','jpg', 'jpeg', 'png', 'PNG', 'JPG', 'JPEG'); // On creer un tableau pour les extensions autorises
 
                                 if(in_array($ext_fichier_now, $ext_allowed)){
                                     if($erreur_fichier === 0){ //On verifier que le code d'erreur du fichier est 0 car 0 => aucune erreure et qu'ils sont du meme type avec === (identique)
