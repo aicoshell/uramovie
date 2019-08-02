@@ -143,7 +143,26 @@ require_once('./../config/connect_db.php');
                     break;
 
                 case 'addActeur':
-                    echo "addActeur";
+                         // On verifie que le champs obligatoires sont remplies : titre, date de sortie, image
+                         if (!isset($_POST['nom_acteur']) or empty($_POST['nom_acteur'])) {
+                            echo "Le champ titre est vide !";
+                        } else {
+                            $nom_acteur = $_POST['nom_acteur'];
+
+                            
+                            $sql = "INSERT INTO acteurs (nom) VALUES (?)";
+                            $exe = $dbh->prepare($sql);
+                            $exe->execute([$nom_acteur]);
+                            if ($exe->errorCode() == 00000) {
+                              //Si l'execution de la requete $exe retourne true on le stock dans la var $exeBool 
+                                header('location:./../manageMovies.php?#addActeurs');
+                            } else {
+                                echo "Une erreure est survenue. \nPDOStatement::errorCode(): ";
+                                print $exe->errorCode();
+                                $exeBool = false;
+                            }
+
+                        }
                     break;
 
                 case 'addRealisateur':
