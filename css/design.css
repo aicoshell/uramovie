@@ -10,6 +10,7 @@ h1.logo-css{
     font-size: 60px;
     background: -webkit-linear-gradient(#ff512f, #f09819);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     font-family: 'Monoton', cursive;
 }
@@ -31,5 +32,4 @@ h1.logo-css{
     display: block;
     transition :1s;
 }
-
 

@@ -94,7 +94,17 @@ require_once("config/connect_db.php");
                 </div>
                 <div class="form-group">
                     <label for="acteurs">Acteurs</label>
-                    <input name="acteurs" type="text" class="form-control" id="acteurs" required>
+                    <select name="acteurs" id="acteurs" class="form-control" multiple="multiple" style="">
+                        <?php
+                        $stmt = $dbh->query("SELECT * FROM acteurs");
+                        while ($row = $stmt->fetch()) {
+                            ?>
+                            <option value="<?php echo $row['nom']; ?>"><?php echo $row['nom']; ?></option>
+
+                        <?php
+                        }
+                        ?>
+                    </select>
                 </div>
 
                 <div class="form-group">
