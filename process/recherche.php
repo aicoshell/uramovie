@@ -44,11 +44,16 @@ if (empty($_GET['valReq']) or !isset($_GET['valReq'])) { } else {
 
                 ?>
     <div class="media border-bottom p-3">
-        <img width="120" src="process/<?php echo $resultats['url_Jacket'] ?>" class="mr-3" alt="...">
+       <img width="120" src="process/<?php echo $resultats['url_Jacket'] ?>" class="mr-3" alt="<?php echo $resultats['titre']; ?>">
+      
         <div class="media-body">
-            <h5 class="mt-0"><?php echo $resultats['titre']; ?></h5>
+        
+        <a class="btn btn-primary" href="film.php?id_Film=<?php echo $resultats['id']; ?>" role="button">
+        <h5 class="mt-0 text-white"><?php echo $resultats['titre']; ?></h5></a></br>
+            
             <?php echo $synopsis; ?>
             </br> </br>R&eacute;alisateur(s) : <?php echo $resultats['realisateur_s'] ?>
+           
         </div>
     </div>
     <?php
@@ -75,7 +80,7 @@ if (empty($_GET['valReq']) or !isset($_GET['valReq'])) { } else {
                 while ($i <= $nbMaxP) {
                    
                     ?>
-            <li class="page-item"><button class="page-link" id="getNumPage" data-pageNum="<?php echo $i; ?>" ><?php echo $i; ?></button></a>
+            <li class="page-item"><button class="page-link" id="getNumPage" data-pageNum="<?php echo $i; ?>"><?php echo $i; ?></button></a>
             <?php
                      $i++;
                 }
