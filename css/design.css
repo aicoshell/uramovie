@@ -33,3 +33,10 @@ h1.logo-css{
     transition :1s;
 }
 
+
+.rech-av{
+    margin-top: 2em; 
+    padding-top: 4em; 
+    max-width: 200px;
+    float: right;
+}
