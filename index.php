@@ -62,28 +62,32 @@
 
       <div class="col rech-av bg-dark">
 
-        <form class="form-group" id="searchForm" method="GET" action="#?rechercheAvance">
-          <input class="form-control mr-sm-2" type="search" placeholder="Recherche" aria-label="Search" name="keyword" id="rechercheReqAv">
+        <form class="form-group " id="searchForm" method="GET" action="#?rechercheAvance">
+          <input class="form-control mr-sm-2 rounded" type="search" placeholder="Recherche" aria-label="Search" name="keyword" id="rechercheReqAv">
 
+          <div class="form-group bg-light rounded mt-3 p-2">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-            <label class="form-check-label" for="inlineCheckbox1">Langues</label>
+            <input class="form-check-input" type="checkbox" id="Checkbox1" value="lang_on">
+            <label class="form-check-label" for="Checkbox1">Langues</label>
           </div>
 
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-            <label class="form-check-label" for="inlineCheckbox1">Genres</label>
+            <input class="form-check-input" type="checkbox" id="Checkbox2" value="genres_on">
+            <label class="form-check-label" for="Checkbox2">Genres</label>
           </div>
 
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-            <label class="form-check-label" for="inlineCheckbox1">R&eacute;alisateur</label>
+            <input class="form-check-input" type="checkbox" id="Checkbox3" value="rea_on">
+            <label class="form-check-label" for="Checkbox3">R&eacute;alisateur</label>
           </div>
 
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="Checkbox4" value="acteurs_on">
+            <label class="form-check-label" for="Checkbox4">Acteurs</label>
+          </div>
+      </div>
 
-          <label for="customRange1">Dur&eacute;e</label>
-          <input type="range" class="custom-range" id="customRange1">
-          <button class="btn btn-light" type="button" value="Rechercher">Rechercher</button>
+          <button class="btn btn-light rounded text-center" type="button" value="Rechercher">Rechercher</button>
         </form>
       </div>
 
