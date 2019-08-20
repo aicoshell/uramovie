@@ -38,7 +38,7 @@
                 while ($row = $navBar->fetch()) {
       
           ?>
-          <a class="dropdown-item" href="#"><?php echo $row['nom']; ?></a>
+          <a class="dropdown-item" href="acteur.php?id_Acteur=<?php echo $row['id'];?>"><?php echo $row['nom']; ?></a>
           <?php
                 }
           ?>

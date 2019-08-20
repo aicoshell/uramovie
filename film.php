@@ -47,7 +47,35 @@
                     <h3 class="text-light">Synopsis</h3>
                     <?php echo $data['synopsis']; ?></br></br>
                     <h3 class="text-light">R&eacute;alisateur(s)</h3> <?php echo $data['realisateur_s']; ?></br></br></br>
-                    <h3 class="text-light">Acteur(s)</h3> <?php echo $data['acteur_s']; ?></br>
+                    <h3 class="text-light">Acteur(s)</h3></br>
+                    <?php
+                    $list_acteurs = $data['acteur_s']; // stock les acteurs recuperer pour le film en question
+                 
+                        $sep_act = explode(",",$list_acteurs); //explode transforme les elements separer par un delimiter selectionner => tableau
+                        $nbValList = count($sep_act); // recupere le nombres de valeurs dans le tableau de la liste acteurs
+                         
+                        
+                        $i = 0;
+                            while($i<$nbValList){
+                                $nAct = $sep_act[$i];
+                                
+
+                                $reqGetAct = $dbh->prepare("SELECT * FROM acteurs WHERE nom='$nAct'");
+                                
+                                $reqGetAct->execute();
+                                $dataAct = $reqGetAct->fetch();
+                                
+                                 ?>
+                                 <a class="link text-white" href="acteur.php?id_Acteur=<?php echo $dataAct['id']; ?>"><?php echo $dataAct['nom']; ?></a>
+                                 <?php  
+                                
+                                $i++;
+                            }
+                        
+                        ?>
+                    
+
+                   
                 </div>
             </div>
             <div class="row">
